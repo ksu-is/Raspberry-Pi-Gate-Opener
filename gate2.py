@@ -26,14 +26,11 @@ global gateclosed
 gateclosed=False
 global gateopen
 gateopen=False
-#bcflip = 0
-def task():
-    print("do task now")
 
 def opengate():
     global gateclosed
     global gateopen
-    #GPIO.output(26, False)
+    #GPIO.output(26, True)
     print("opening gate")
     gateopen = True
     gateclosed = False
@@ -41,7 +38,7 @@ def opengate():
 def closegate():
     global gateclosed
     global gateopen
-    #GPIO.output(26, True)
+    #GPIO.output(26, False)
     print("closing gate")
     gateopen = False
     gateclosed = True
@@ -49,13 +46,12 @@ def closegate():
 def crestroninput():
     global input_state
     global bc
-    #global bcflip
     #input_state = GPIO.input(4)
     if input_state == False:
         #bcflip = 1
         print('button pressed')
         opengate()
-        bc += 1
+        bc = 1
     else:
         querrystate()
 def querrystate():
@@ -64,18 +60,19 @@ def querrystate():
     print(time)
     if time>2200 or time<700:
         closegate()
-    elif bc>=2:
+    elif time<2200 or time>700:
+        opengate()
+    elif bc == 1:
         closegate()
         print("bc")
         bc = 0
-    else:
-        opengate()
+    
 
-#schedule.every().day.at("07:00").do(opengate)
 #schedule.every().day.at("22:00").do(closegate)
 
-schedule.every().day.at("13:54").do(opengate)
-schedule.every().day.at("13:56").do(closegate)
+#schedule.every().day.at("07:00").do(opengate)
+schedule.every().day.at("14:09").do(closegate)
+schedule.every().day.at("14:10").do(opengate)
 
 
 
