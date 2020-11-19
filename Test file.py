@@ -1,3 +1,4 @@
+import time
 global gateclosed
 gateclosed=False
 global gateopen
@@ -21,13 +22,14 @@ def closegate():
 
 codes = ["1234", "5678"]
 
-while gateopen == False:
-    codein = input("get code")
-    if codein in codes:
-        opengate()
-        print("Gate open")
-        time.sleep(45)
-        closegate()
-        print("Gate closed")
-    else:
-        print("wrong code")
+while True:
+    if gateopen == False:
+        codein = input("get code")
+        if codein in codes:
+            opengate()
+            print("Gate open")
+            time.sleep(45)
+            closegate()
+            print("Gate closed")
+        else:
+            print("wrong code")

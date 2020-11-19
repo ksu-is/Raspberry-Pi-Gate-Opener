@@ -96,6 +96,19 @@ try:
         elif gateclosed == True:
             print("gate is closed")
         time.sleep(0.2)
+
+while True:
+    if gateopen == False:
+        codein = input("get code")
+        if codein in codes:
+            opengate()
+            print("Gate open")
+            time.sleep(45)
+            closegate()
+            print("Gate closed")
+        else:
+            print("wrong code")
+
 finally:
     #GPIO.cleanup()
     pass
