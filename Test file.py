@@ -23,11 +23,11 @@ codes = ["1234", "5678"]
 
 while gateopen == False:
     codein = input("get code")
-        if codein in codes:
-            opengate()
-            print("Gate open")
-            time.sleep(45)
-            closegate()
-            print("Gate closed")
-        else:
-            print("wrong code")
+    if codein in codes:
+        opengate()
+        print("Gate open")
+        time.sleep(45)
+        closegate()
+        print("Gate closed")
+    else:
+        print("wrong code")
